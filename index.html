@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Builder - Create Professional Resumes with AI | M.JUNAID</title>
+    <meta name="description" content="Create professional resumes with 200+ templates and AI-powered content generation. Free resume builder by M.JUNAID with PDF export, phone optimization, and cloud storage.">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    
+    <!-- Core Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.12/typed.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'display': ['Playfair Display', 'serif'],
+                        'body': ['Inter', 'sans-serif'],
+                        'mono': ['JetBrains Mono', 'monospace']
+                    },
+                    colors: {
+                        'primary': '#2C3E50',
+                        'accent': '#16A085',
+                        'secondary': '#F39C12',
+                        'ai-gradient': {
+                            from: '#6C5CE7',
+                            to: '#00B894'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        .hero-bg {
+            background: linear-gradient(135deg, #2C3E50 0%, #34495E 50%, #2C3E50 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('./resources/hero-bg.jpg') center/cover;
+            opacity: 0.3;
+            z-index: 1;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, #16A085, #00B894);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .ai-gradient {
+            background: linear-gradient(135deg, #6C5CE7, #00B894);
+        }
+        
+        .template-card {
+            transition: all 0.3s ease;
+        }
+        
+        .template-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+        
+        .feature-icon {
+            background: linear-gradient(135deg, #16A085, #00B894);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+        }
+        
+        .stats-number {
+            font-size: 3rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #16A085, #00B894);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .nav-glass {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #16A085, #00B894);
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(22, 160, 133, 0.3);
+        }
+        
+        .btn-secondary {
+            border: 2px solid #16A085;
+            color: #16A085;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-secondary:hover {
+            background: #16A085;
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        
+        .scroll-reveal.revealed {
+            opacity: 1;
+            transform: translateY(0);
+            transition: all 0.6s ease;
+        }
+    </style>
+</head>
+<body class="font-body bg-gray-50">
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 nav-glass">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <h1 class="text-2xl font-display font-bold text-primary">
+                        M.<span class="gradient-text">JUNAID</span>
+                    </h1>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="index.html" class="text-primary font-medium hover:text-accent transition-colors">Home</a>
+                    <a href="builder.html" class="text-gray-600 hover:text-accent transition-colors">Builder</a>
+                    <a href="templates.html" class="text-gray-600 hover:text-accent transition-colors">Templates</a>
+                    <a href="contact.html" class="text-gray-600 hover:text-accent transition-colors">Contact</a>
+                </div>
+                <div class="md:hidden">
+                    <button class="text-primary">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-bg min-h-screen flex items-center pt-16">
+        <div class="hero-content max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div class="text-center lg:text-left">
+                    <h1 class="text-5xl lg:text-7xl font-display font-bold text-white mb-6">
+                        WELCOME TO<br>
+                        <span class="gradient-text">MY WORLD</span>
+                    </h1>
+                    <h2 class="text-3xl lg:text-4xl font-display font-semibold text-white mb-4">
+                        THIS ME <span class="gradient-text">JUNAID</span>
+                    </h2>
+                    <p class="text-xl text-gray-300 mb-8 leading-relaxed">
+                        Create professional resumes with <span id="typed-text" class="font-semibold text-accent"></span>
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                        <a href="builder.html" class="btn-primary px-8 py-4 rounded-lg text-white font-semibold text-lg inline-block">
+                            Start Building Now
+                        </a>
+                        <a href="templates.html" class="btn-secondary px-8 py-4 rounded-lg font-semibold text-lg inline-block">
+                            Browse Templates
+                        </a>
+                    </div>
+                </div>
+                <div class="relative">
+                    <div class="bg-white rounded-2xl shadow-2xl p-8 transform rotate-3 hover:rotate-0 transition-transform duration-500">
+                        <div class="text-center mb-6">
+                            <h3 class="text-2xl font-display font-bold text-primary mb-2">Your Professional Resume</h3>
+                            <div class="w-16 h-1 bg-accent mx-auto"></div>
+                        </div>
+                        <div class="space-y-4">
+                            <div class="bg-gray-100 h-4 rounded w-3/4"></div>
+                            <div class="bg-gray-100 h-4 rounded w-full"></div>
+                            <div class="bg-gray-100 h-4 rounded w-5/6"></div>
+                            <div class="bg-accent h-4 rounded w-1/2"></div>
+                        </div>
+                        <div class="mt-6 flex justify-center space-x-2">
+                            <div class="w-3 h-3 bg-accent rounded-full"></div>
+                            <div class="w-3 h-3 bg-gray-300 rounded-full"></div>
+                            <div class="w-3 h-3 bg-gray-300 rounded-full"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 scroll-reveal">
+                <h2 class="text-4xl lg:text-5xl font-display font-bold text-primary mb-6">
+                    Powerful Features for <span class="gradient-text">Resume Success</span>
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Everything you need to create a professional resume that gets noticed by recruiters and hiring managers.
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="text-center scroll-reveal">
+                    <div class="feature-icon mx-auto mb-6">
+                        <span>🤖</span>
+                    </div>
+                    <h3 class="text-xl font-semibold text-primary mb-4">AI Content Generator</h3>
+                    <p class="text-gray-600">Generate professional bullet points and summaries with AI assistance</p>
+                </div>
+                
+                <div class="text-center scroll-reveal">
+                    <div class="feature-icon mx-auto mb-6">
+                        <span>📄</span>
+                    </div>
+                    <h3 class="text-xl font-semibold text-primary mb-4">200+ Templates</h3>
+                    <p class="text-gray-600">Choose from professional, creative, and ATS-friendly templates</p>
+                </div>
+                
+                <div class="text-center scroll-reveal">
+                    <div class="feature-icon mx-auto mb-6">
+                        <span>📱</span>
+                    </div>
+                    <h3 class="text-xl font-semibold text-primary mb-4">Multi-Format Export</h3>
+                    <p class="text-gray-600">Export to PDF, phone-optimized formats, and cloud storage</p>
+                </div>
+                
+                <div class="text-center scroll-reveal">
+                    <div class="feature-icon mx-auto mb-6">
+                        <span>⚡</span>
+                    </div>
+                    <h3 class="text-xl font-semibold text-primary mb-4">Real-time Analysis</h3>
+                    <p class="text-gray-600">Get instant feedback on resume quality and ATS compatibility</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Template Showcase -->
+    <section class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 scroll-reveal">
+                <h2 class="text-4xl lg:text-5xl font-display font-bold text-primary mb-6">
+                    Professional <span class="gradient-text">Templates</span>
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Browse our collection of 200+ professionally designed resume templates
+                </p>
+            </div>
+            
+            <div class="splide" id="template-carousel">
+                <div class="splide__track">
+                    <ul class="splide__list">
+                        <li class="splide__slide">
+                            <div class="template-card bg-white rounded-xl shadow-lg overflow-hidden mx-4">
+                                <div class="h-64 bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
+                                    <span class="text-white text-2xl font-bold">Professional Template</span>
+                                </div>
+                                <div class="p-6">
+                                    <h3 class="text-xl font-semibold text-primary mb-2">Executive Professional</h3>
+                                    <p class="text-gray-600 mb-4">Perfect for corporate and executive positions</p>
+                                    <div class="flex justify-between items-center">
+                                        <span class="text-sm text-gray-500">Professional</span>
+                                        <button class="btn-primary px-4 py-2 rounded text-white text-sm">Use Template</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        
+                        <li class="splide__slide">
+                            <div class="template-card bg-white rounded-xl shadow-lg overflow-hidden mx-4">
+                                <div class="h-64 bg-gradient-to-br from-green-500 to-teal-600 flex items-center justify-center">
+                                    <span class="text-white text-2xl font-bold">Modern Template</span>
+                                </div>
+                                <div class="p-6">
+                                    <h3 class="text-xl font-semibold text-primary mb-2">Tech Modern</h3>
+                                    <p class="text-gray-600 mb-4">Ideal for technology and startup roles</p>
+                                    <div class="flex justify-between items-center">
+                                        <span class="text-sm text-gray-500">Modern</span>
+                                        <button class="btn-primary px-4 py-2 rounded text-white text-sm">Use Template</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        
+                        <li class="splide__slide">
+                            <div class="template-card bg-white rounded-xl shadow-lg overflow-hidden mx-4">
+                                <div class="h-64 bg-gradient-to-br from-pink-500 to-red-500 flex items-center justify-center">
+                                    <span class="text-white text-2xl font-bold">Creative Template</span>
+                                </div>
+                                <div class="p-6">
+                                    <h3 class="text-xl font-semibold text-primary mb-2">Creative Portfolio</h3>
+                                    <p class="text-gray-600 mb-4">Great for designers and creative professionals</p>
+                                    <div class="flex justify-between items-center">
+                                        <span class="text-sm text-gray-500">Creative</span>
+                                        <button class="btn-primary px-4 py-2 rounded text-white text-sm">Use Template</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        
+                        <li class="splide__slide">
+                            <div class="template-card bg-white rounded-xl shadow-lg overflow-hidden mx-4">
+                                <div class="h-64 bg-gradient-to-br from-gray-600 to-gray-800 flex items-center justify-center">
+                                    <span class="text-white text-2xl font-bold">Minimal Template</span>
+                                </div>
+                                <div class="p-6">
+                                    <h3 class="text-xl font-semibold text-primary mb-2">Clean Minimal</h3>
+                                    <p class="text-gray-600 mb-4">Simple and elegant for any profession</p>
+                                    <div class="flex justify-between items-center">
+                                        <span class="text-sm text-gray-500">Simple</span>
+                                        <button class="btn-primary px-4 py-2 rounded text-white text-sm">Use Template</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <a href="templates.html" class="btn-secondary px-8 py-4 rounded-lg font-semibold text-lg inline-block">
+                    View All 200+ Templates
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Statistics Section -->
+    <section class="py-20 bg-primary text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8 text-center">
+                <div class="scroll-reveal">
+                    <div class="stats-number text-white">200+</div>
+                    <p class="text-xl text-gray-300">Professional Templates</p>
+                </div>
+                <div class="scroll-reveal">
+                    <div class="stats-number text-white">50K+</div>
+                    <p class="text-xl text-gray-300">Resumes Created</p>
+                </div>
+                <div class="scroll-reveal">
+                    <div class="stats-number text-white">95%</div>
+                    <p class="text-xl text-gray-300">Success Rate</p>
+                </div>
+                <div class="scroll-reveal">
+                    <div class="stats-number text-white">24/7</div>
+                    <p class="text-xl text-gray-300">AI Assistance</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI Features Demo -->
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div class="scroll-reveal">
+                    <h2 class="text-4xl lg:text-5xl font-display font-bold text-primary mb-6">
+                        AI-Powered <span class="gradient-text">Content Generation</span>
+                    </h2>
+                    <p class="text-xl text-gray-600 mb-8">
+                        Our advanced AI helps you write compelling resume content that gets noticed by recruiters and passes ATS systems.
+                    </p>
+                    <div class="space-y-4">
+                        <div class="flex items-center space-x-4">
+                            <div class="w-8 h-8 bg-accent rounded-full flex items-center justify-center text-white font-bold">✓</div>
+                            <span class="text-lg text-gray-700">Generate professional bullet points</span>
+                        </div>
+                        <div class="flex items-center space-x-4">
+                            <div class="w-8 h-8 bg-accent rounded-full flex items-center justify-center text-white font-bold">✓</div>
+                            <span class="text-lg text-gray-700">Optimize for ATS compatibility</span>
+                        </div>
+                        <div class="flex items-center space-x-4">
+                            <div class="w-8 h-8 bg-accent rounded-full flex items-center justify-center text-white font-bold">✓</div>
+                            <span class="text-lg text-gray-700">Real-time content analysis</span>
+                        </div>
+                        <div class="flex items-center space-x-4">
+                            <div class="w-8 h-8 bg-accent rounded-full flex items-center justify-center text-white font-bold">✓</div>
+                            <span class="text-lg text-gray-700">Keyword optimization</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="scroll-reveal">
+                    <div class="bg-gray-50 rounded-2xl p-8">
+                        <div class="ai-gradient text-white p-6 rounded-xl mb-6">
+                            <h3 class="text-xl font-semibold mb-4">AI Content Generator</h3>
+                            <div class="space-y-3">
+                                <div class="bg-white bg-opacity-20 p-3 rounded">
+                                    <p class="text-sm">"Managed team and improved processes"</p>
+                                </div>
+                                <div class="text-center">
+                                    <span class="text-2xl">↓</span>
+                                </div>
+                                <div class="bg-white bg-opacity-20 p-3 rounded">
+                                    <p class="text-sm font-semibold">"Led cross-functional team of 12 members, implementing new workflow processes that increased productivity by 35%"</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <button class="btn-primary px-6 py-3 rounded-lg text-white font-semibold">
+                                Try AI Features
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="py-20 bg-gradient-to-r from-accent to-green-600 text-white">
+        <div class="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8 scroll-reveal">
+            <h2 class="text-4xl lg:text-5xl font-display font-bold mb-6">
+                Ready to Create Your Perfect Resume?
+            </h2>
+            <p class="text-xl mb-8 opacity-90">
+                Join thousands of professionals who have landed their dream jobs with our AI-powered resume builder.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="builder.html" class="bg-white text-accent px-8 py-4 rounded-lg font-semibold text-lg hover:bg-gray-100 transition-colors">
+                    Start Building Now
+                </a>
+                <a href="templates.html" class="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-white hover:text-accent transition-colors">
+                    Browse Templates
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-primary text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div class="mb-8">
+                <h3 class="text-2xl font-display font-bold mb-2">
+                    M.<span class="text-accent">JUNAID</span>
+                </h3>
+                <p class="text-gray-400">Professional Resume Builder</p>
+            </div>
+            <div class="border-t border-gray-700 pt-8">
+                <p class="text-gray-400">
+                    © 2025 M.JUNAID Resume Builder. All rights reserved. | Built with ❤️ for your career success
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="main.js"></script>
+    <script>
+        // Initialize carousel
+        document.addEventListener('DOMContentLoaded', function() {
+            new Splide('#template-carousel', {
+                type: 'loop',
+                perPage: 3,
+                perMove: 1,
+                gap: '2rem',
+                autoplay: true,
+                interval: 3000,
+                breakpoints: {
+                    1024: {
+                        perPage: 2,
+                    },
+                    640: {
+                        perPage: 1,
+                    }
+                }
+            }).mount();
+            
+            // Scroll reveal animation
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('revealed');
+                    }
+                });
+            }, observerOptions);
+            
+            document.querySelectorAll('.scroll-reveal').forEach(el => {
+                observer.observe(el);
+            });
+        });
+    </script>
+</body>
+</html>

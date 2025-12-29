@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Builder - Create Your Professional Resume | M.JUNAID</title>
+    <meta name="description" content="Build your professional resume with AI-powered content generation, 200+ templates, and real-time analysis. Export to PDF and phone formats.">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    
+    <!-- Core Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'display': ['Playfair Display', 'serif'],
+                        'body': ['Inter', 'sans-serif'],
+                        'mono': ['JetBrains Mono', 'monospace']
+                    },
+                    colors: {
+                        'primary': '#2C3E50',
+                        'accent': '#16A085',
+                        'secondary': '#F39C12',
+                        'ai-gradient': {
+                            from: '#6C5CE7',
+                            to: '#00B894'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        .gradient-text {
+            background: linear-gradient(135deg, #16A085, #00B894);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .ai-gradient {
+            background: linear-gradient(135deg, #6C5CE7, #00B894);
+        }
+        
+        .nav-glass {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #16A085, #00B894);
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(22, 160, 133, 0.3);
+        }
+        
+        .btn-secondary {
+            border: 2px solid #16A085;
+            color: #16A085;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-secondary:hover {
+            background: #16A085;
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        .btn-ai {
+            background: linear-gradient(135deg, #6C5CE7, #00B894);
+            transition: all 0.3s ease;
+        }
+        
+        .btn-ai:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(108, 92, 231, 0.3);
+        }
+        
+        .template-card {
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .template-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(0,0,0,0.15);
+        }
+        
+        .template-card.active {
+            border: 3px solid #16A085;
+            transform: translateY(-4px);
+        }
+        
+        .progress-bar {
+            background: linear-gradient(90deg, #16A085, #00B894);
+            height: 6px;
+            border-radius: 3px;
+            transition: width 0.3s ease;
+        }
+        
+        .analysis-score {
+            font-size: 2rem;
+            font-weight: 700;
+        }
+        
+        .form-input {
+            transition: all 0.3s ease;
+        }
+        
+        .form-input:focus {
+            border-color: #16A085;
+            box-shadow: 0 0 0 3px rgba(22, 160, 133, 0.1);
+        }
+        
+        .ai-suggestion {
+            background: linear-gradient(135deg, rgba(108, 92, 231, 0.1), rgba(0, 184, 148, 0.1));
+            border-left: 4px solid #6C5CE7;
+        }
+        
+        .export-btn {
+            transition: all 0.3s ease;
+        }
+        
+        .export-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+        
+        .export-pdf { background: linear-gradient(135deg, #E74C3C, #C0392B); }
+        .export-phone { background: linear-gradient(135deg, #3498DB, #2980B9); }
+        .export-cloud { background: linear-gradient(135deg, #27AE60, #229954); }
+        .export-print { background: linear-gradient(135deg, #95A5A6, #7F8C8D); }
+    </style>
+</head>
+<body class="font-body bg-gray-50">
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 nav-glass">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <h1 class="text-2xl font-display font-bold text-primary">
+                        M.<span class="gradient-text">JUNAID</span>
+                    </h1>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="index.html" class="text-gray-600 hover:text-accent transition-colors">Home</a>
+                    <a href="builder.html" class="text-primary font-medium hover:text-accent transition-colors">Builder</a>
+                    <a href="templates.html" class="text-gray-600 hover:text-accent transition-colors">Templates</a>
+                    <a href="contact.html" class="text-gray-600 hover:text-accent transition-colors">Contact</a>
+                </div>
+                <div class="md:hidden">
+                    <button class="text-primary">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Builder Header -->
+    <section class="pt-20 pb-8 bg-white border-b">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center">
+                <div>
+                    <h1 class="text-3xl lg:text-4xl font-display font-bold text-primary mb-2">
+                        Resume <span class="gradient-text">Builder</span>
+                    </h1>
+                    <p class="text-gray-600">Create your professional resume with AI assistance</p>
+                </div>
+                <div class="mt-4 md:mt-0 flex items-center space-x-4">
+                    <div class="text-sm text-gray-600">
+                        Progress: <span id="progress-text">0%</span>
+                    </div>
+                    <div class="w-32 bg-gray-200 rounded-full h-2">
+                        <div id="progress-bar" class="progress-bar w-0"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Builder Interface -->
+    <section class="py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-12 gap-8">
+                <!-- Left Panel - Template Selection -->
+                <div class="lg:col-span-3">
+                    <div class="bg-white rounded-xl shadow-lg p-6 sticky top-24">
+                        <h2 class="text-xl font-semibold text-primary mb-6">Choose Template</h2>
+                        
+                        <!-- Template Categories -->
+                        <div class="space-y-2 mb-6">
+                            <button class="template-filter w-full text-left px-4 py-2 rounded-lg bg-accent text-white" data-category="all">
+                                All Templates
+                            </button>
+                            <button class="template-filter w-full text-left px-4 py-2 rounded-lg hover:bg-gray-100" data-category="professional">
+                                Professional
+                            </button>
+                            <button class="template-filter w-full text-left px-4 py-2 rounded-lg hover:bg-gray-100" data-category="modern">
+                                Modern
+                            </button>
+                            <button class="template-filter w-full text-left px-4 py-2 rounded-lg hover:bg-gray-100" data-category="creative">
+                                Creative
+                            </button>
+                            <button class="template-filter w-full text-left px-4 py-2 rounded-lg hover:bg-gray-100" data-category="simple">
+                                Simple
+                            </button>
+                            <button class="template-filter w-full text-left px-4 py-2 rounded-lg hover:bg-gray-100" data-category="ats">
+                                ATS-Friendly
+                            </button>
+                        </div>
+                        
+                        <!-- Template Preview Cards -->
+                        <div class="space-y-4">
+                            <div class="template-card active bg-white border rounded-lg overflow-hidden" data-template="professional">
+                                <div class="h-24 bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center">
+                                    <span class="text-white text-sm font-bold">Professional</span>
+                                </div>
+                                <div class="p-3">
+                                    <h3 class="font-semibold text-sm text-primary">Executive Professional</h3>
+                                    <p class="text-xs text-gray-600">Perfect for corporate roles</p>
+                                </div>
+                            </div>
+                            
+                            <div class="template-card bg-white border rounded-lg overflow-hidden" data-template="modern">
+                                <div class="h-24 bg-gradient-to-br from-green-500 to-teal-600 flex items-center justify-center">
+                                    <span class="text-white text-sm font-bold">Modern</span>
+                                </div>
+                                <div class="p-3">
+                                    <h3 class="font-semibold text-sm text-primary">Tech Modern</h3>
+                                    <p class="text-xs text-gray-600">Great for tech positions</p>
+                                </div>
+                            </div>
+                            
+                            <div class="template-card bg-white border rounded-lg overflow-hidden" data-template="creative">
+                                <div class="h-24 bg-gradient-to-br from-purple-500 to-pink-600 flex items-center justify-center">
+                                    <span class="text-white text-sm font-bold">Creative</span>
+                                </div>
+                                <div class="p-3">
+                                    <h3 class="font-semibold text-sm text-primary">Creative Portfolio</h3>
+                                    <p class="text-xs text-gray-600">For designers & artists</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Customization Options -->
+                        <div class="mt-8">
+                            <h3 class="text-lg font-semibold text-primary mb-4">Customize</h3>
+                            
+                            <div class="space-y-4">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">Color Scheme</label>
+                                    <div class="flex space-x-2">
+                                        <button class="w-8 h-8 rounded-full bg-blue-500 border-2 border-transparent hover:border-gray-300" data-color="blue"></button>
+                                        <button class="w-8 h-8 rounded-full bg-green-500 border-2 border-transparent hover:border-gray-300" data-color="green"></button>
+                                        <button class="w-8 h-8 rounded-full bg-purple-500 border-2 border-transparent hover:border-gray-300" data-color="purple"></button>
+                                        <button class="w-8 h-8 rounded-full bg-gray-700 border-2 border-transparent hover:border-gray-300" data-color="gray"></button>
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">Font Style</label>
+                                    <select class="w-full px-3 py-2 border border-gray-300 rounded-lg form-input">
+                                        <option value="inter">Inter (Modern)</option>
+                                        <option value="playfair">Playfair Display (Elegant)</option>
+                                        <option value="arial">Arial (Professional)</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Center Panel - Resume Editor -->
+                <div class="lg:col-span-6">
+                    <div class="bg-white rounded-xl shadow-lg p-6">
+                        <div class="flex justify-between items-center mb-6">
+                            <h2 class="text-xl font-semibold text-primary">Resume Editor</h2>
+                            <div class="flex space-x-2">
+                                <button class="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors">
+                                    Undo
+                                </button>
+                                <button class="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors">
+                                    Redo
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <!-- Personal Information -->
+                        <div class="mb-8">
+                            <h3 class="text-lg font-semibold text-primary mb-4">Personal Information</h3>
+                            <div class="grid md:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">First Name</label>
+                                    <input type="text" class="w-full px-4 py-3 border border-gray-300 rounded-lg form-input resume-input" data-field="personal.firstName" placeholder="John">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">Last Name</label>
+                                    <input type="text" class="w-full px-4 py-3 border border-gray-300 rounded-lg form-input resume-input" data-field="personal.lastName" placeholder="Doe">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">Email</label>
+                                    <input type="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg form-input resume-input" data-field="personal.email" placeholder="john.doe@email.com">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">Phone</label>
+                                    <input type="tel" class="w-full px-4 py-3 border border-gray-300 rounded-lg form-input resume-input" data-field="personal.phone" placeholder="(555) 123-4567">
+                                </div>
+                                <div class="md:col-span-2">
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">Professional Title</label>
+                                    <input type="text" class="w-full px-4 py-3 border border-gray-300 rounded-lg form-input resume-input" data-field="personal.title" placeholder="Software Developer">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Professional Summary -->
+                        <div class="mb-8">
+                            <div class="flex justify-between items-center mb-4">
+                                <h3 class="text-lg font-semibold text-primary">Professional Summary</h3>
+                                <button class="btn-ai px-4 py-2 text-white text-sm rounded-lg ai-generate" data-section="summary">
+                                    ✨ AI Generate
+                                </button>
+                            </div>
+                            <textarea class="w-full px-4 py-3 border border-gray-300 rounded-lg form-input resume-input analyze-content" data-field="summary" rows="4" placeholder="Write your professional summary or use AI to generate one..."></textarea>
+                        </div>
+                        
+                        <!-- Experience -->
+                        <div class="mb-8">
+                            <div class="flex justify-between items-center mb-4">
+                                <h3 class="text-lg font-semibold text-primary">Work Experience</h3>
+                                <button class="btn-primary px-4 py-2 text-white text-sm rounded-lg">
+                                    + Add Experience
+                                </button>
+                            </div>
+                            <div id="experience-section" class="space-y-6">
+                                <div class="experience-item border border-gray-200 rounded-lg p-4">
+                                    <div class="grid md:grid-cols-2 gap-4 mb-4">
+                                        <div>
+                                            <label class="block text-sm font-medium text-gray-700 mb-2">Job Title</label>
+                                            <input type="text" class="w-full px-4 py-3 border border-gray-300 rounded-lg form-input" placeholder="Senior Software Developer">
+                                        </div>
+                                        <div>
+                                            <label class="block text-sm font-medium text-gray-700 mb-2">Company</label>
+                                            <input type="text" class="w-full px-4 py-3 border border-gray-300 rounded-lg form-input" placeholder="Tech Company Inc.">
+                                        </div>
+                                        <div>
+                                            <label class="block text-sm font-medium text-gray-700 mb-2">Start Date</label>
+                                            <input type="text" class="w-full px-4 py-3 border border-gray-300 rounded-lg form-input" placeholder="Jan 2020">
+                                        </div>
+                                        <div>
+                                            <label class="block text-sm font-medium text-gray-700 mb-2">End Date</label>
+                                            <input type="text" class="w-full px-4 py-3 border border-gray-300 rounded-lg form-input" placeholder="Present">
+                                        </div>
+                                    </div>
+                                    <div class="mb-4">
+                                        <label class="block text-sm font-medium text-gray-700 mb-2">Description</label>
+                                        <textarea class="w-full px-4 py-3 border border-gray-300 rounded-lg form-input analyze-content" rows="3" placeholder="Describe your responsibilities and achievements..."></textarea>
+                                        <button class="mt-2 text-sm text-accent hover:underline ai-generate" data-section="experience">
+                                            ✨ AI Enhance
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Skills -->
+                        <div class="mb-8">
+                            <div class="flex justify-between items-center mb-4">
+                                <h3 class="text-lg font-semibold text-primary">Skills</h3>
+                                <button class="btn-ai px-4 py-2 text-white text-sm rounded-lg ai-generate" data-section="skills">
+                                    ✨ AI Suggest
+                                </button>
+                            </div>
+                            <div class="space-y-4">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">Technical Skills</label>
+                                    <input type="text" class="w-full px-4 py-3 border border-gray-300 rounded-lg form-input" placeholder="JavaScript, React, Node.js, Python...">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">Soft Skills</label>
+                                    <input type="text" class="w-full px-4 py-3 border border-gray-300 rounded-lg form-input" placeholder="Leadership, Communication, Project Management...">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Panel - AI Features & Analysis -->
+                <div class="lg:col-span-3">
+                    <div class="space-y-6">
+                        <!-- AI Analysis -->
+                        <div class="bg-white rounded-xl shadow-lg p-6">
+                            <h3 class="text-lg font-semibold text-primary mb-4">AI Analysis</h3>
+                            
+                            <div class="text-center mb-6">
+                                <div id="analysis-score" class="analysis-score gradient-text">85</div>
+                                <p class="text-sm text-gray-600">Resume Score</p>
+                            </div>
+                            
+                            <div class="space-y-3">
+                                <div class="ai-suggestion p-3 rounded-lg">
+                                    <p class="text-sm font-medium text-gray-800">✓ Strong action verbs detected</p>
+                                </div>
+                                <div class="ai-suggestion p-3 rounded-lg">
+                                    <p class="text-sm font-medium text-gray-800">✓ Good quantifiable achievements</p>
+                                </div>
+                                <div class="ai-suggestion p-3 rounded-lg">
+                                    <p class="text-sm font-medium text-gray-800">⚠ Consider adding more keywords</p>
+                                </div>
+                            </div>
+                            
+                            <button class="w-full mt-4 btn-primary px-4 py-2 text-white rounded-lg">
+                                Get Detailed Analysis
+                            </button>
+                        </div>
+                        
+                        <!-- ATS Compatibility -->
+                        <div class="bg-white rounded-xl shadow-lg p-6">
+                            <h3 class="text-lg font-semibold text-primary mb-4">ATS Compatibility</h3>
+                            
+                            <div class="space-y-4">
+                                <div class="flex justify-between items-center">
+                                    <span class="text-sm text-gray-600">Format</span>
+                                    <span class="text-sm font-semibold text-green-600">✓ Compatible</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-sm text-gray-600">Keywords</span>
+                                    <span class="text-sm font-semibold text-yellow-600">⚠ Needs Improvement</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-sm text-gray-600">Structure</span>
+                                    <span class="text-sm font-semibold text-green-600">✓ Good</span>
+                                </div>
+                            </div>
+                            
+                            <button class="w-full mt-4 btn-secondary px-4 py-2 rounded-lg">
+                                Optimize for ATS
+                            </button>
+                        </div>
+                        
+                        <!-- Export Options -->
+                        <div class="bg-white rounded-xl shadow-lg p-6">
+                            <h3 class="text-lg font-semibold text-primary mb-4">Export Resume</h3>
+                            
+                            <div class="space-y-3">
+                                <button class="export-btn export-pdf w-full px-4 py-3 text-white rounded-lg font-semibold flex items-center justify-center space-x-2">
+                                    <span>📄</span>
+                                    <span>Export as PDF</span>
+                                </button>
+                                
+                                <button class="export-btn export-phone w-full px-4 py-3 text-white rounded-lg font-semibold flex items-center justify-center space-x-2">
+                                    <span>📱</span>
+                                    <span>Phone Format</span>
+                                </button>
+                                
+                                <button class="export-btn export-cloud w-full px-4 py-3 text-white rounded-lg font-semibold flex items-center justify-center space-x-2">
+                                    <span>☁️</span>
+                                    <span>Save to Cloud</span>
+                                </button>
+                                
+                                <button class="export-btn export-print w-full px-4 py-3 text-white rounded-lg font-semibold flex items-center justify-center space-x-2">
+                                    <span>🖨️</span>
+                                    <span>Print Ready</span>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <!-- Quick Tips -->
+                        <div class="bg-gradient-to-br from-accent to-green-600 text-white rounded-xl shadow-lg p-6">
+                            <h3 class="text-lg font-semibold mb-4">💡 Quick Tips</h3>
+                            <div class="space-y-3 text-sm">
+                                <p>• Use action verbs like "Led", "Developed", "Improved"</p>
+                                <p>• Quantify achievements with numbers and percentages</p>
+                                <p>• Tailor content to the job description</p>
+                                <p>• Keep it concise and relevant</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-primary text-white py-12 mt-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div class="mb-8">
+                <h3 class="text-2xl font-display font-bold mb-2">
+                    M.<span class="text-accent">JUNAID</span>
+                </h3>
+                <p class="text-gray-400">Professional Resume Builder</p>
+            </div>
+            <div class="border-t border-gray-700 pt-8">
+                <p class="text-gray-400">
+                    © 2025 M.JUNAID Resume Builder. All rights reserved. | Built with ❤️ for your career success
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Template selection
+            document.querySelectorAll('.template-card').forEach(card => {
+                card.addEventListener('click', function() {
+                    document.querySelectorAll('.template-card').forEach(c => c.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+            
+            // Color scheme selection
+            document.querySelectorAll('[data-color]').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const color = this.dataset.color;
+                    // Update template colors based on selection
+                    console.log('Color changed to:', color);
+                });
+            });
+            
+            // Progress tracking
+            function updateProgress() {
+                const inputs = document.querySelectorAll('.resume-input');
+                const filledInputs = Array.from(inputs).filter(input => input.value.trim() !== '');
+                const progress = Math.round((filledInputs.length / inputs.length) * 100);
+                
+                document.getElementById('progress-bar').style.width = progress + '%';
+                document.getElementById('progress-text').textContent = progress + '%';
+            }
+            
+            // Listen for input changes
+            document.querySelectorAll('.resume-input').forEach(input => {
+                input.addEventListener('input', updateProgress);
+            });
+            
+            // Initial progress calculation
+            updateProgress();
+        });
+    </script>
+</body>
+</html>

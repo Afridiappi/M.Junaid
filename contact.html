@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact M.JUNAID - Professional Resume Builder</title>
+    <meta name="description" content="Get in touch with M.JUNAID for professional resume building services, career consulting, and AI-powered resume solutions.">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    
+    <!-- Core Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'display': ['Playfair Display', 'serif'],
+                        'body': ['Inter', 'sans-serif'],
+                        'mono': ['JetBrains Mono', 'monospace']
+                    },
+                    colors: {
+                        'primary': '#2C3E50',
+                        'accent': '#16A085',
+                        'secondary': '#F39C12',
+                        'ai-gradient': {
+                            from: '#6C5CE7',
+                            to: '#00B894'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        .gradient-text {
+            background: linear-gradient(135deg, #16A085, #00B894);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .nav-glass {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #16A085, #00B894);
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(22, 160, 133, 0.3);
+        }
+        
+        .btn-secondary {
+            border: 2px solid #16A085;
+            color: #16A085;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-secondary:hover {
+            background: #16A085;
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        .hero-bg {
+            background: linear-gradient(135deg, #2C3E50 0%, #34495E 50%, #2C3E50 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('./resources/hero-bg.jpg') center/cover;
+            opacity: 0.2;
+            z-index: 1;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .contact-card {
+            transition: all 0.3s ease;
+        }
+        
+        .contact-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(0,0,0,0.15);
+        }
+        
+        .form-input {
+            transition: all 0.3s ease;
+        }
+        
+        .form-input:focus {
+            border-color: #16A085;
+            box-shadow: 0 0 0 3px rgba(22, 160, 133, 0.1);
+        }
+        
+        .social-link {
+            transition: all 0.3s ease;
+        }
+        
+        .social-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+        
+        .testimonial-card {
+            transition: all 0.3s ease;
+        }
+        
+        .testimonial-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(0,0,0,0.1);
+        }
+        
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        
+        .scroll-reveal.revealed {
+            opacity: 1;
+            transform: translateY(0);
+            transition: all 0.6s ease;
+        }
+        
+        .stats-number {
+            font-size: 3rem;
+            font-weight: 700;
+        }
+        
+        .service-icon {
+            background: linear-gradient(135deg, #16A085, #00B894);
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body class="font-body bg-gray-50">
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 nav-glass">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <h1 class="text-2xl font-display font-bold text-primary">
+                        M.<span class="gradient-text">JUNAID</span>
+                    </h1>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="index.html" class="text-gray-600 hover:text-accent transition-colors">Home</a>
+                    <a href="builder.html" class="text-gray-600 hover:text-accent transition-colors">Builder</a>
+                    <a href="templates.html" class="text-gray-600 hover:text-accent transition-colors">Templates</a>
+                    <a href="contact.html" class="text-primary font-medium hover:text-accent transition-colors">Contact</a>
+                </div>
+                <div class="md:hidden">
+                    <button class="text-primary">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-bg min-h-screen flex items-center pt-16">
+        <div class="hero-content max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div class="text-center lg:text-left">
+                    <h1 class="text-5xl lg:text-6xl font-display font-bold text-white mb-6">
+                        THIS ME <span class="gradient-text">JUNAID</span>
+                    </h1>
+                    <h2 class="text-2xl lg:text-3xl font-display font-semibold text-white mb-6">
+                        Professional Resume Builder & Career Consultant
+                    </h2>
+                    <p class="text-xl text-gray-300 mb-8 leading-relaxed">
+                        I'm passionate about helping professionals create outstanding resumes that open doors to amazing career opportunities. 
+                        With AI-powered tools and personalized guidance, I make resume building effortless and effective.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                        <a href="builder.html" class="btn-primary px-8 py-4 rounded-lg text-white font-semibold text-lg inline-block">
+                            Start Building Your Resume
+                        </a>
+                        <a href="#contact" class="btn-secondary px-8 py-4 rounded-lg font-semibold text-lg inline-block">
+                            Get In Touch
+                        </a>
+                    </div>
+                </div>
+                <div class="relative">
+                    <div class="bg-white rounded-2xl shadow-2xl p-8 transform rotate-3 hover:rotate-0 transition-transform duration-500">
+                        <div class="text-center mb-6">
+                            <div class="w-24 h-24 bg-gradient-to-br from-accent to-green-600 rounded-full mx-auto mb-4 flex items-center justify-center text-white text-3xl font-bold">
+                                MJ
+                            </div>
+                            <h3 class="text-2xl font-display font-bold text-primary mb-2">M. JUNAID</h3>
+                            <p class="text-gray-600">Resume Builder Expert</p>
+                        </div>
+                        <div class="space-y-4">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-2 h-2 bg-accent rounded-full"></div>
+                                <span class="text-gray-700">5+ Years Experience</span>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <div class="w-2 h-2 bg-accent rounded-full"></div>
+                                <span class="text-gray-700">50K+ Resumes Created</span>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <div class="w-2 h-2 bg-accent rounded-full"></div>
+                                <span class="text-gray-700">95% Success Rate</span>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <div class="w-2 h-2 bg-accent rounded-full"></div>
+                                <span class="text-gray-700">AI-Powered Solutions</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Information -->
+    <section id="contact" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 scroll-reveal">
+                <h2 class="text-4xl lg:text-5xl font-display font-bold text-primary mb-6">
+                    Get In <span class="gradient-text">Touch</span>
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Have questions about resume building? Need personalized career advice? 
+                    I'm here to help you succeed in your professional journey.
+                </p>
+            </div>
+            
+            <div class="grid lg:grid-cols-3 gap-8 mb-16">
+                <div class="contact-card bg-white rounded-xl shadow-lg p-8 text-center scroll-reveal">
+                    <div class="w-16 h-16 bg-gradient-to-br from-accent to-green-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <span class="text-white text-2xl">📧</span>
+                    </div>
+                    <h3 class="text-xl font-semibold text-primary mb-4">Email</h3>
+                    <p class="text-gray-600 mb-4">Get in touch via email for any inquiries</p>
+                    <a href="mailto:m.junaid@resumebuilder.com" class="text-accent font-semibold hover:underline">
+                        m.junaid@resumebuilder.com
+                    </a>
+                </div>
+                
+                <div class="contact-card bg-white rounded-xl shadow-lg p-8 text-center scroll-reveal">
+                    <div class="w-16 h-16 bg-gradient-to-br from-accent to-green-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <span class="text-white text-2xl">📱</span>
+                    </div>
+                    <h3 class="text-xl font-semibold text-primary mb-4">Phone</h3>
+                    <p class="text-gray-600 mb-4">Call me for immediate assistance</p>
+                    <a href="tel:+1234567890" class="text-accent font-semibold hover:underline">
+                        +1 (234) 567-8900
+                    </a>
+                </div>
+                
+                <div class="contact-card bg-white rounded-xl shadow-lg p-8 text-center scroll-reveal">
+                    <div class="w-16 h-16 bg-gradient-to-br from-accent to-green-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <span class="text-white text-2xl">💬</span>
+                    </div>
+                    <h3 class="text-xl font-semibold text-primary mb-4">Live Chat</h3>
+                    <p class="text-gray-600 mb-4">Available 24/7 for instant support</p>
+                    <button class="btn-primary px-6 py-2 text-white rounded-lg font-semibold" onclick="alert('Live chat feature coming soon!')">
+                        Start Chat
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Contact Form -->
+            <div class="max-w-4xl mx-auto">
+                <div class="bg-white rounded-xl shadow-lg p-8 scroll-reveal">
+                    <h3 class="text-2xl font-display font-bold text-primary mb-6 text-center">
+                        Send Me a Message
+                    </h3>
+                    <form id="contact-form" class="space-y-6">
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Name</label>
+                                <input type="text" class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none" placeholder="Your Name" required>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Email</label>
+                                <input type="email" class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none" placeholder="your@email.com" required>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Subject</label>
+                            <input type="text" class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none" placeholder="How can I help you?" required>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Message</label>
+                            <textarea class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none" rows="6" placeholder="Tell me about your resume needs or career goals..." required></textarea>
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="btn-primary px-8 py-4 text-white rounded-lg font-semibold text-lg">
+                                Send Message
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services -->
+    <section class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 scroll-reveal">
+                <h2 class="text-4xl lg:text-5xl font-display font-bold text-primary mb-6">
+                    Services I <span class="gradient-text">Offer</span>
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Comprehensive resume and career services designed to accelerate your professional growth.
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="text-center scroll-reveal">
+                    <div class="service-icon mb-6">
+                        <span>📄</span>
+                    </div>
+                    <h3 class="text-xl font-semibold text-primary mb-4">Resume Building</h3>
+                    <p class="text-gray-600 mb-6">Professional resume creation with AI-powered content generation and 200+ templates.</p>
+                    <div class="text-2xl font-bold text-accent">Free</div>
+                </div>
+                
+                <div class="text-center scroll-reveal">
+                    <div class="service-icon mb-6">
+                        <span>🎯</span>
+                    </div>
+                    <h3 class="text-xl font-semibold text-primary mb-4">Career Consulting</h3>
+                    <p class="text-gray-600 mb-6">Personalized career guidance and strategy development for professional growth.</p>
+                    <div class="text-2xl font-bold text-accent">$99</div>
+                </div>
+                
+                <div class="text-center scroll-reveal">
+                    <div class="service-icon mb-6">
+                        <span>✍️</span>
+                    </div>
+                    <h3 class="text-xl font-semibold text-primary mb-4">Cover Letters</h3>
+                    <p class="text-gray-600 mb-6">Customized cover letters that complement your resume and highlight your strengths.</p>
+                    <div class="text-2xl font-bold text-accent">$49</div>
+                </div>
+                
+                <div class="text-center scroll-reveal">
+                    <div class="service-icon mb-6">
+                        <span>💼</span>
+                    </div>
+                    <h3 class="text-xl font-semibold text-primary mb-4">LinkedIn Optimization</h3>
+                    <p class="text-gray-600 mb-6">Professional LinkedIn profile optimization to attract recruiters and opportunities.</p>
+                    <div class="text-2xl font-bold text-accent">$79</div>
+                </div>
+                
+                <div class="text-center scroll-reveal">
+                    <div class="service-icon mb-6">
+                        <span>🎤</span>
+                    </div>
+                    <h3 class="text-xl font-semibold text-primary mb-4">Interview Coaching</h3>
+                    <p class="text-gray-600 mb-6">Mock interviews and coaching to help you ace your next job interview.</p>
+                    <div class="text-2xl font-bold text-accent">$149</div>
+                </div>
+                
+                <div class="text-center scroll-reveal">
+                    <div class="service-icon mb-6">
+                        <span>🚀</span>
+                    </div>
+                    <h3 class="text-xl font-semibold text-primary mb-4">Career Accelerator</h3>
+                    <p class="text-gray-600 mb-6">Complete career package including resume, cover letter, and coaching session.</p>
+                    <div class="text-2xl font-bold text-accent">$299</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Links & Brand -->
+    <section class="py-20 bg-primary text-white">
+        <div class="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
+            <h2 class="text-4xl lg:text-5xl font-display font-bold mb-6">
+                Connect With <span class="text-accent">M.JUNAID</span>
+            </h2>
+            <p class="text-xl mb-12 opacity-90">
+                Follow me on social media for daily career tips, resume advice, and professional development insights.
+            </p>
+            
+            <div class="grid md:grid-cols-4 gap-6 mb-12">
+                <a href="#" class="social-link bg-white bg-opacity-10 p-6 rounded-xl hover:bg-opacity-20 transition-all">
+                    <div class="text-3xl mb-3">💼</div>
+                    <div class="font-semibold">LinkedIn</div>
+                    <div class="text-sm opacity-75">Professional Network</div>
+                </a>
+                
+                <a href="#" class="social-link bg-white bg-opacity-10 p-6 rounded-xl hover:bg-opacity-20 transition-all">
+                    <div class="text-3xl mb-3">🐦</div>
+                    <div class="font-semibold">Twitter</div>
+                    <div class="text-sm opacity-75">Daily Tips</div>
+                </a>
+                
+                <a href="#" class="social-link bg-white bg-opacity-10 p-6 rounded-xl hover:bg-opacity-20 transition-all">
+                    <div class="text-3xl mb-3">📸</div>
+                    <div class="font-semibold">Instagram</div>
+                    <div class="text-sm opacity-75">Behind Scenes</div>
+                </a>
+                
+                <a href="#" class="social-link bg-white bg-opacity-10 p-6 rounded-xl hover:bg-opacity-20 transition-all">
+                    <div class="text-3xl mb-3">📺</div>
+                    <div class="font-semibold">YouTube</div>
+                    <div class="text-sm opacity-75">Video Tutorials</div>
+                </a>
+            </div>
+            
+            <div class="text-center">
+                <div class="inline-flex items-center space-x-4 bg-white bg-opacity-10 px-6 py-3 rounded-full">
+                    <span class="text-lg font-semibold">Personal Website:</span>
+                    <a href="index.html" class="text-accent font-semibold hover:underline">
+                        www.mjunaid-resumebuilder.com
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 scroll-reveal">
+                <h2 class="text-4xl lg:text-5xl font-display font-bold text-primary mb-6">
+                    What People <span class="gradient-text">Say</span>
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Success stories from professionals who transformed their careers with my resume builder.
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="testimonial-card bg-white rounded-xl shadow-lg p-8 scroll-reveal">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 bg-gradient-to-br from-accent to-green-600 rounded-full flex items-center justify-center text-white font-bold mr-4">
+                            S
+                        </div>
+                        <div>
+                            <div class="font-semibold text-primary">Sarah Johnson</div>
+                            <div class="text-sm text-gray-600">Marketing Manager</div>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 mb-4">
+                        "M.JUNAID's resume builder helped me land my dream job! The AI content generator created professional bullet points that perfectly showcased my experience."
+                    </p>
+                    <div class="flex text-yellow-400">
+                        <span>★★★★★</span>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card bg-white rounded-xl shadow-lg p-8 scroll-reveal">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 bg-gradient-to-br from-accent to-green-600 rounded-full flex items-center justify-center text-white font-bold mr-4">
+                            M
+                        </div>
+                        <div>
+                            <div class="font-semibold text-primary">Michael Chen</div>
+                            <div class="text-sm text-gray-600">Software Developer</div>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 mb-4">
+                        "The templates are professional and ATS-friendly. I got three interview calls within a week of updating my resume with this tool!"
+                    </p>
+                    <div class="flex text-yellow-400">
+                        <span>★★★★★</span>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card bg-white rounded-xl shadow-lg p-8 scroll-reveal">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 bg-gradient-to-br from-accent to-green-600 rounded-full flex items-center justify-center text-white font-bold mr-4">
+                            E
+                        </div>
+                        <div>
+                            <div class="font-semibold text-primary">Emily Rodriguez</div>
+                            <div class="text-sm text-gray-600">Project Manager</div>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 mb-4">
+                        "Amazing service! The AI suggestions were spot-on and the resume builder is incredibly user-friendly. Highly recommend M.JUNAID's platform!"
+                    </p>
+                    <div class="flex text-yellow-400">
+                        <span>★★★★★</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-primary text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div class="mb-8">
+                <h3 class="text-2xl font-display font-bold mb-2">
+                    M.<span class="text-accent">JUNAID</span>
+                </h3>
+                <p class="text-gray-400">Professional Resume Builder</p>
+            </div>
+            <div class="border-t border-gray-700 pt-8">
+                <p class="text-gray-400">
+                    © 2025 M.JUNAID Resume Builder. All rights reserved. | Built with ❤️ for your career success
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Scroll reveal animation
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('revealed');
+                    }
+                });
+            }, observerOptions);
+            
+            document.querySelectorAll('.scroll-reveal').forEach(el => {
+                observer.observe(el);
+            });
+            
+            // Contact form submission
+            document.getElementById('contact-form').addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Show success message
+                alert('Thank you for your message! I will get back to you within 24 hours.');
+                
+                // Reset form
+                this.reset();
+            });
+            
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

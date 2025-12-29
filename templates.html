@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>200+ Professional Resume Templates | M.JUNAID</title>
+    <meta name="description" content="Browse 200+ professional resume templates. Choose from professional, creative, modern, and ATS-friendly designs. All templates are free to use with our resume builder.">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    
+    <!-- Core Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'display': ['Playfair Display', 'serif'],
+                        'body': ['Inter', 'sans-serif'],
+                        'mono': ['JetBrains Mono', 'monospace']
+                    },
+                    colors: {
+                        'primary': '#2C3E50',
+                        'accent': '#16A085',
+                        'secondary': '#F39C12',
+                        'ai-gradient': {
+                            from: '#6C5CE7',
+                            to: '#00B894'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        .gradient-text {
+            background: linear-gradient(135deg, #16A085, #00B894);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .nav-glass {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #16A085, #00B894);
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(22, 160, 133, 0.3);
+        }
+        
+        .btn-secondary {
+            border: 2px solid #16A085;
+            color: #16A085;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-secondary:hover {
+            background: #16A085;
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        .template-card {
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .template-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+        
+        .filter-btn {
+            transition: all 0.3s ease;
+        }
+        
+        .filter-btn.active {
+            background: linear-gradient(135deg, #16A085, #00B894);
+            color: white;
+        }
+        
+        .search-input {
+            transition: all 0.3s ease;
+        }
+        
+        .search-input:focus {
+            border-color: #16A085;
+            box-shadow: 0 0 0 3px rgba(22, 160, 133, 0.1);
+        }
+        
+        .template-preview {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .template-preview::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent 30%, rgba(22, 160, 133, 0.1) 50%, transparent 70%);
+            transform: translateX(-100%);
+            transition: transform 0.6s ease;
+        }
+        
+        .template-card:hover .template-preview::before {
+            transform: translateX(100%);
+        }
+        
+        .stats-badge {
+            background: linear-gradient(135deg, #16A085, #00B894);
+            color: white;
+            font-size: 0.75rem;
+            padding: 0.25rem 0.5rem;
+            border-radius: 9999px;
+            font-weight: 600;
+        }
+        
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        
+        .scroll-reveal.revealed {
+            opacity: 1;
+            transform: translateY(0);
+            transition: all 0.6s ease;
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+        }
+        
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal-content {
+            background: white;
+            border-radius: 12px;
+            max-width: 90vw;
+            max-height: 90vh;
+            overflow: auto;
+            position: relative;
+        }
+    </style>
+</head>
+<body class="font-body bg-gray-50">
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 nav-glass">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <h1 class="text-2xl font-display font-bold text-primary">
+                        M.<span class="gradient-text">JUNAID</span>
+                    </h1>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="index.html" class="text-gray-600 hover:text-accent transition-colors">Home</a>
+                    <a href="builder.html" class="text-gray-600 hover:text-accent transition-colors">Builder</a>
+                    <a href="templates.html" class="text-primary font-medium hover:text-accent transition-colors">Templates</a>
+                    <a href="contact.html" class="text-gray-600 hover:text-accent transition-colors">Contact</a>
+                </div>
+                <div class="md:hidden">
+                    <button class="text-primary">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header Section -->
+    <section class="pt-20 pb-12 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h1 class="text-4xl lg:text-5xl font-display font-bold text-primary mb-6">
+                    200+ Professional <span class="gradient-text">Templates</span>
+                </h1>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
+                    Choose from our extensive collection of professionally designed resume templates. 
+                    All templates are free to use and optimized for ATS systems.
+                </p>
+                
+                <!-- Search Bar -->
+                <div class="max-w-2xl mx-auto">
+                    <div class="relative">
+                        <input type="text" id="template-search" class="search-input w-full px-6 py-4 border border-gray-300 rounded-2xl text-lg focus:outline-none" placeholder="Search templates by job title, industry, or style...">
+                        <button class="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-accent">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Filter Buttons -->
+            <div class="flex flex-wrap justify-center gap-4 mb-12">
+                <button class="filter-btn active px-6 py-3 rounded-full font-semibold" data-filter="all">
+                    All Templates (200+)
+                </button>
+                <button class="filter-btn px-6 py-3 rounded-full font-semibold bg-gray-100 text-gray-700 hover:bg-gray-200" data-filter="professional">
+                    Professional (50)
+                </button>
+                <button class="filter-btn px-6 py-3 rounded-full font-semibold bg-gray-100 text-gray-700 hover:bg-gray-200" data-filter="creative">
+                    Creative (40)
+                </button>
+                <button class="filter-btn px-6 py-3 rounded-full font-semibold bg-gray-100 text-gray-700 hover:bg-gray-200" data-filter="modern">
+                    Modern (40)
+                </button>
+                <button class="filter-btn px-6 py-3 rounded-full font-semibold bg-gray-100 text-gray-700 hover:bg-gray-200" data-filter="simple">
+                    Simple (30)
+                </button>
+                <button class="filter-btn px-6 py-3 rounded-full font-semibold bg-gray-100 text-gray-700 hover:bg-gray-200" data-filter="ats">
+                    ATS-Friendly (40)
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Templates Grid -->
+    <section class="py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div id="template-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+                <!-- Templates will be dynamically generated -->
+            </div>
+            
+            <!-- Load More Button -->
+            <div class="text-center mt-12">
+                <button id="load-more" class="btn-primary px-8 py-4 text-white rounded-lg font-semibold text-lg">
+                    Load More Templates
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 scroll-reveal">
+                <h2 class="text-4xl lg:text-5xl font-display font-bold text-primary mb-6">
+                    Why Choose Our <span class="gradient-text">Templates</span>?
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Every template is carefully crafted by professional designers and HR experts to maximize your chances of getting hired.
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="text-center scroll-reveal">
+                    <div class="w-16 h-16 bg-gradient-to-br from-accent to-green-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <span class="text-white text-2xl">✓</span>
+                    </div>
+                    <h3 class="text-xl font-semibold text-primary mb-4">ATS Optimized</h3>
+                    <p class="text-gray-600">All templates are designed to pass Applicant Tracking Systems and get noticed by recruiters.</p>
+                </div>
+                
+                <div class="text-center scroll-reveal">
+                    <div class="w-16 h-16 bg-gradient-to-br from-accent to-green-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <span class="text-white text-2xl">🎨</span>
+                    </div>
+                    <h3 class="text-xl font-semibold text-primary mb-4">Professional Design</h3>
+                    <p class="text-gray-600">Created by expert designers with modern aesthetics and industry best practices in mind.</p>
+                </div>
+                
+                <div class="text-center scroll-reveal">
+                    <div class="w-16 h-16 bg-gradient-to-br from-accent to-green-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <span class="text-white text-2xl">📱</span>
+                    </div>
+                    <h3 class="text-xl font-semibold text-primary mb-4">Mobile Friendly</h3>
+                    <p class="text-gray-600">Every template looks great on all devices and can be exported in multiple formats.</p>
+                </div>
+                
+                <div class="text-center scroll-reveal">
+                    <div class="w-16 h-16 bg-gradient-to-br from-accent to-green-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <span class="text-white text-2xl">🚀</span>
+                    </div>
+                    <h3 class="text-xl font-semibold text-primary mb-4">Easy to Customize</h3>
+                    <p class="text-gray-600">Change colors, fonts, and layouts with just a few clicks to match your personal brand.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Template Preview Modal -->
+    <div id="template-modal" class="modal">
+        <div class="modal-content p-8 m-4">
+            <div class="flex justify-between items-center mb-6">
+                <h2 id="modal-title" class="text-2xl font-display font-bold text-primary"></h2>
+                <button id="close-modal" class="text-gray-400 hover:text-gray-600 text-2xl">&times;</button>
+            </div>
+            <div id="modal-preview" class="mb-6">
+                <!-- Template preview will be inserted here -->
+            </div>
+            <div class="flex justify-center space-x-4">
+                <button id="use-template" class="btn-primary px-8 py-3 text-white rounded-lg font-semibold">
+                    Use This Template
+                </button>
+                <button id="preview-full" class="btn-secondary px-8 py-3 rounded-lg font-semibold">
+                    Full Preview
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Call to Action -->
+    <section class="py-20 bg-gradient-to-r from-accent to-green-600 text-white">
+        <div class="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
+            <h2 class="text-4xl lg:text-5xl font-display font-bold mb-6">
+                Ready to Build Your Resume?
+            </h2>
+            <p class="text-xl mb-8 opacity-90">
+                Choose your favorite template and start creating a professional resume that gets results.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="builder.html" class="bg-white text-accent px-8 py-4 rounded-lg font-semibold text-lg hover:bg-gray-100 transition-colors">
+                    Start Building Now
+                </a>
+                <a href="index.html" class="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-white hover:text-accent transition-colors">
+                    Learn More
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-primary text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div class="mb-8">
+                <h3 class="text-2xl font-display font-bold mb-2">
+                    M.<span class="text-accent">JUNAID</span>
+                </h3>
+                <p class="text-gray-400">Professional Resume Builder</p>
+            </div>
+            <div class="border-t border-gray-700 pt-8">
+                <p class="text-gray-400">
+                    © 2025 M.JUNAID Resume Builder. All rights reserved. | Built with ❤️ for your career success
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            let currentFilter = 'all';
+            let displayedTemplates = 24;
+            const templatesPerLoad = 24;
+            
+            // Template data
+            const templateCategories = {
+                professional: { count: 50, color: 'blue', icon: '💼' },
+                creative: { count: 40, color: 'purple', icon: '🎨' },
+                modern: { count: 40, color: 'green', icon: '⚡' },
+                simple: { count: 30, color: 'gray', icon: '✨' },
+                ats: { count: 40, color: 'indigo', icon: '📋' }
+            };
+            
+            // Generate template cards
+            function generateTemplateCards() {
+                const grid = document.getElementById('template-grid');
+                const templates = [];
+                
+                // Generate templates based on categories
+                Object.keys(templateCategories).forEach(category => {
+                    const categoryData = templateCategories[category];
+                    for (let i = 1; i <= categoryData.count; i++) {
+                        const templateId = `${category}-${i}`;
+                        const popularity = Math.floor(Math.random() * 100);
+                        const templateNumber = templates.length + 1;
+                        
+                        templates.push({
+                            id: templateId,
+                            name: `${categoryData.icon} ${category.charAt(0).toUpperCase() + category.slice(1)} Template ${i}`,
+                            category: category,
+                            popularity: popularity,
+                            description: `Professional ${category} resume template optimized for ${category === 'professional' ? 'corporate' : category} roles.`,
+                            colors: generateColorScheme(categoryData.color)
+                        });
+                    }
+                });
+                
+                // Filter and display templates
+                const filteredTemplates = currentFilter === 'all' 
+                    ? templates 
+                    : templates.filter(t => t.category === currentFilter);
+                
+                const displayTemplates = filteredTemplates.slice(0, displayedTemplates);
+                
+                grid.innerHTML = displayTemplates.map(template => `
+                    <div class="template-card bg-white rounded-xl shadow-lg overflow-hidden scroll-reveal" 
+                         data-template="${template.id}" 
+                         data-category="${template.category}"
+                         style="animation-delay: ${Math.random() * 0.5}s">
+                        <div class="template-preview h-64 flex items-center justify-center" 
+                             style="background: linear-gradient(135deg, ${template.colors[0]}, ${template.colors[1]})">
+                            <div class="text-center text-white">
+                                <div class="text-4xl mb-2">${templateCategories[template.category].icon}</div>
+                                <div class="font-bold text-lg">${template.name}</div>
+                                <div class="text-sm opacity-90">${template.category.toUpperCase()}</div>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex justify-between items-start mb-3">
+                                <h3 class="text-lg font-semibold text-primary">${template.name}</h3>
+                                <span class="stats-badge">${template.popularity}%</span>
+                            </div>
+                            <p class="text-gray-600 text-sm mb-4">${template.description}</p>
+                            <div class="flex justify-between items-center">
+                                <span class="text-xs text-gray-500 uppercase tracking-wide">${template.category}</span>
+                                <div class="flex space-x-2">
+                                    <button class="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors text-sm preview-btn" data-template="${template.id}">
+                                        Preview
+                                    </button>
+                                    <button class="btn-primary px-4 py-2 text-white rounded-lg text-sm use-btn" data-template="${template.id}">
+                                        Use Template
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `).join('');
+                
+                // Show/hide load more button
+                const loadMoreBtn = document.getElementById('load-more');
+                if (displayedTemplates >= filteredTemplates.length) {
+                    loadMoreBtn.style.display = 'none';
+                } else {
+                    loadMoreBtn.style.display = 'block';
+                }
+                
+                // Trigger scroll reveal animation
+                setTimeout(() => {
+                    document.querySelectorAll('.scroll-reveal').forEach(el => {
+                        el.classList.add('revealed');
+                    });
+                }, 100);
+            }
+            
+            // Generate color scheme based on category
+            function generateColorScheme(category) {
+                const colorSchemes = {
+                    blue: ['#2563EB', '#1E40AF', '#1E3A8A'],
+                    purple: ['#7C3AED', '#6D28D9', '#5B21B6'],
+                    green: ['#059669', '#047857', '#065F46'],
+                    gray: ['#374151', '#1F2937', '#111827'],
+                    indigo: ['#4F46E5', '#4338CA', '#3730A3']
+                };
+                return colorSchemes[category] || colorSchemes.blue;
+            }
+            
+            // Filter functionality
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    // Update active state
+                    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Update filter and reset display count
+                    currentFilter = this.dataset.filter;
+                    displayedTemplates = templatesPerLoad;
+                    
+                    // Regenerate templates
+                    generateTemplateCards();
+                });
+            });
+            
+            // Search functionality
+            document.getElementById('template-search').addEventListener('input', function() {
+                const searchTerm = this.value.toLowerCase();
+                const templateCards = document.querySelectorAll('.template-card');
+                
+                templateCards.forEach(card => {
+                    const title = card.querySelector('h3').textContent.toLowerCase();
+                    const description = card.querySelector('p').textContent.toLowerCase();
+                    const category = card.dataset.category.toLowerCase();
+                    
+                    if (title.includes(searchTerm) || description.includes(searchTerm) || category.includes(searchTerm)) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+            
+            // Load more functionality
+            document.getElementById('load-more').addEventListener('click', function() {
+                displayedTemplates += templatesPerLoad;
+                generateTemplateCards();
+            });
+            
+            // Template preview modal
+            const modal = document.getElementById('template-modal');
+            const modalTitle = document.getElementById('modal-title');
+            const modalPreview = document.getElementById('modal-preview');
+            
+            document.addEventListener('click', function(e) {
+                if (e.target.matches('.preview-btn')) {
+                    const templateId = e.target.dataset.template;
+                    const templateCard = document.querySelector(`[data-template="${templateId}"]`);
+                    const templateName = templateCard.querySelector('h3').textContent;
+                    
+                    modalTitle.textContent = templateName;
+                    modalPreview.innerHTML = `
+                        <div class="bg-gradient-to-br from-blue-500 to-purple-600 h-96 rounded-lg flex items-center justify-center text-white">
+                            <div class="text-center">
+                                <div class="text-6xl mb-4">📄</div>
+                                <div class="text-2xl font-bold mb-2">${templateName}</div>
+                                <div class="text-lg opacity-90">Full preview would appear here</div>
+                            </div>
+                        </div>
+                    `;
+                    modal.classList.add('active');
+                }
+                
+                if (e.target.matches('.use-btn')) {
+                    // Redirect to builder with template
+                    window.location.href = 'builder.html';
+                }
+            });
+            
+            // Close modal
+            document.getElementById('close-modal').addEventListener('click', function() {
+                modal.classList.remove('active');
+            });
+            
+            modal.addEventListener('click', function(e) {
+                if (e.target === modal) {
+                    modal.classList.remove('active');
+                }
+            });
+            
+            // Initialize templates
+            generateTemplateCards();
+        });
+    </script>
+</body>
+</html>
